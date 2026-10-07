@@ -1238,7 +1238,7 @@ form.addEventListener('submit',async e=>{
   const text=bookingText(c,name,ph);
   if(Date.now()-lastSent()<WAIT_MS){sendErr(text,'Заявка уже отправлена минуту назад. Если нужно что-то поменять, подождите немного.');return}
   sending=true; fSend.disabled=true; fSend.textContent='Отправляем…';
-  const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),12000);
+  const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),30000);
   try{
     const r=await fetch(TG_URL,{method:'POST',body:new URLSearchParams({text:text}),signal:ctl.signal});
     const j=await r.json().catch(()=>({}));
